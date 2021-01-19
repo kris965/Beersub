@@ -1,0 +1,32 @@
+from django.conf import settings
+from django.db import models
+
+
+# Displays items available for purchase in the store #
+class Item(models.Model):
+    title = models.CharField(max_lenght=100)
+    price = models.FloatField()
+
+    def __str__(self):
+        return self.title
+
+
+# Items added to the cart will become OrderItem #
+class OrderItem(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+
+# Used to store items user has added to their cart.#
+class Order(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    items = models.ManyToManyField(OrderItem)
+    start_date = models.DateTimeField(auto_now_add=True)
+    ordered_date = models.DateTimeField()
+    ordered = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.username
