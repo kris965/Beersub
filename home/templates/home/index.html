@@ -2,5 +2,9 @@
 {% load static %}
 
 {% block content %}
-    <h1 class="display-4 text-success">It works!</h1>
-{% endblock %}
+    <h1 class="display-4 text-success">List of items</h1>
+
+{% for item in items %}
+    {{ item }}
+{% endfor %}
+{% endblock content %}

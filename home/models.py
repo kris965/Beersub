@@ -4,7 +4,7 @@ from django.db import models
 
 # Displays items available for purchase in the store #
 class Item(models.Model):
-    title = models.CharField(max_lenght=100)
+    title = models.CharField(max_length=100)
     price = models.FloatField()
 
     def __str__(self):
