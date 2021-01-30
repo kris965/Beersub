@@ -2,7 +2,7 @@
     <div class="container">
 
         <!-- Brand -->
-        <a class="navbar-brand waves-effect" href="" target="_blank">
+        <a class="navbar-brand waves-effect" href="/home/templates/home/home.html" target="_blank">
             <strong class="yellow-text">Beersub</strong>
         </a>
 
@@ -18,15 +18,15 @@
             <!-- Left -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link waves-effect" href="/home/templates/home/home.html">Home
+                    <a class="nav-link waves-effect" href="">Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link waves-effect" href="/checkout/templates/checkout.html" target="_blank">Checkout</a>
+                    <a class="nav-link waves-effect" href="{% url 'checkout' %}" target="_blank">Checkout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link waves-effect" href="/products/templates/products.html" target="_blank">Products</a>
+                    <a class="nav-link waves-effect" href="{% url 'products' %}" target="_blank">Products</a>
                 </li>
             </ul>
 
