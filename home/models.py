@@ -16,23 +16,28 @@ CATEGORY_CHOICES = (
     ('Q', 'Quadruple')
 )
 
-
-LABEL_COLORS = (
-    ('O', 'orange'),
+LABEL_COLOR_CHOICES = (
+    ('Y', 'yellow'),
+    ('DK', 'dark-yellow'),
+    ('LO', 'ligh-torange'),
+    ('A', 'amber'),
+    ('LB', 'light-brown'),
     ('B', 'brown'),
-    ('Y', 'yellow')
+    ('DB', 'dark-brown'),
+    ('BK', 'black'),
 )
 
 
 # Displays items available for purchase in the store #
 class Item(models.Model):
-    title = models.CharField(max_length=100)
-    brewer = models.FloatField()
+    name = models.CharField(max_length=100)
+    brewer = models.CharField(max_length=100)
     style = models.CharField(choices=CATEGORY_CHOICES, max_length=20)
-    label = models.CharField(choices=LABEL_COLORS, max_length=1)
+    label = models.CharField(choices=LABEL_COLOR_CHOICES, max_length=2)
+    percentage = models.FloatField(max_length=2)
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
 # Items added to the cart will become OrderItem #
@@ -40,7 +45,7 @@ class OrderItem(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
 # Used to store items user has added to their cart.#
