@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.db import models
+from django.shortcuts import reverse
 
-CATEGORY_CHOICES = (
+STYLE_CHOICES = (
     ('APA', 'American Pale Ale'),
     ('IPA', 'Indian Pale Ale'),
     ('S', 'Stout'),
@@ -32,9 +33,10 @@ LABEL_COLOR_CHOICES = (
 class Item(models.Model):
     name = models.CharField(max_length=100)
     brewer = models.CharField(max_length=100)
-    style = models.CharField(choices=CATEGORY_CHOICES, max_length=20)
+    style = models.CharField(choices=STYLE_CHOICES, max_length=20)
     label = models.CharField(choices=LABEL_COLOR_CHOICES, max_length=2)
     percentage = models.FloatField(max_length=2)
+    slug = models.SlugField()
 
     def __str__(self):
         return self.name
@@ -45,7 +47,7 @@ class OrderItem(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.item
 
 
 # Used to store items user has added to their cart.#

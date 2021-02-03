@@ -7,7 +7,7 @@ def products(request):
     context = {
         'items': Item.objects.all()
     }
-    return render(request, "products/product.html", context)
+    return render(request, "product.html", context)
 
 
 class ItemDetailView(DetailView):
